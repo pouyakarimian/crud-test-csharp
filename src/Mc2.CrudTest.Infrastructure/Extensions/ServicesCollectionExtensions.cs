@@ -25,7 +25,7 @@ public static class ServicesCollectionExtensions
     /// </summary>
     /// <param name="services">The service collection.</param>
     public static IServiceCollection AddWriteOnlyRepositories(this IServiceCollection services) =>
-         services
-            //.AddScoped<IEventStoreRepository, EventStoreRepository>()
-            .AddScoped<ICustomerWriteRepository, CustomerWriteOnlyRepository>();
+     services
+        //.AddScoped<IEventStoreRepository, EventStoreRepository>()
+        .AddScoped<ICustomerWriteRepository, CustomerWriteOnlyRepository>();
 }

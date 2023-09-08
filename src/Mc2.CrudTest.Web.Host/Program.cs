@@ -3,6 +3,7 @@ using Mc2.CrudTest.Web.Host.Extensions;
 using Mc2.CrudTest.Application.Features.Commands.Customer.Create;
 using System.Reflection;
 using FluentValidation;
+using Mc2.CrudTest.Application.Features.Commands.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,28 +18,15 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(CreateCustomerCommand).GetTypeInfo().Assembly);
 });
 
-
-//builder.Services.AddMediatR(cfg =>
-//{
-//    cfg.RegisterServicesFromAssemblyContaining(typeof(Program));
-//    //cfg.RegisterServicesFromAssemblyContaining(typeof(CustomerMapping));
-//    //cfg.AddOpenBehavior(typeof(ExceptionBehavior<,>));
-//    //cfg.AddOpenBehavior(typeof(ValidatorBehavior<,>));
-//    //cfg.AddOpenBehavior(typeof(TransactionBehavior<,>));
-//    //cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
-//});
-
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateCustomerCommandValidator));
-
-//builder.Services.AddSingleton<IValidator<CreateCustomerCommand>, CreateCustomerCommandValidator>();
 builder.Services
     .ConfigureAppSettings()
     .AddInfrastructure()
     .AddWriteDbContext()
     .AddWriteOnlyRepositories();
-//.AddReadDbContext()
-//.AddReadOnlyRepositories()
+
+builder.Services.AddAutoMapper(typeof(CustomerMapping).Assembly, typeof(Program).Assembly);
+
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateCustomerCommandValidator));
 
 var app = builder.Build();
 
