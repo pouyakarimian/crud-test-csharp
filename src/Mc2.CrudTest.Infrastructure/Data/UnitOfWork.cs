@@ -156,7 +156,7 @@ public sealed class UnitOfWork : IUnitOfWork
         if (disposing)
         {
             _writeDbContext.Dispose();
-            _eventStoreRepository.Dispose();
+            //_eventStoreRepository.Dispose();
         }
 
         _disposed = true;

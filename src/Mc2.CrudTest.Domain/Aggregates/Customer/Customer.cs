@@ -6,11 +6,11 @@ namespace Mc2.CrudTest.Domain.Aggregates.Customer
 {
     public class Customer : BaseEntity, IAggregateRoot
     {
-        private bool _isDeleted;
+
         /// <summary>
         /// Default constructor for Entity Framework or other ORM frameworks.
         /// </summary>
-        public Customer()
+        private Customer()
         {
         }
 
@@ -56,9 +56,7 @@ namespace Mc2.CrudTest.Domain.Aggregates.Customer
         /// </summary>
         public void Delete()
         {
-            if (_isDeleted) return;
-
-            _isDeleted = true;
+            IsDeleted = true;
             AddDomainEvent(new CustomerDeletedEvent(Id, FirstName, LastName, PhoneNumber, BankAccountNumber.Number, Email.Address, DateOfBirth));
         }
     }

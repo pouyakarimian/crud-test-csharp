@@ -22,7 +22,7 @@ public abstract class BaseWriteOnlyRepository<TEntity, Tkey> : IWriteOnlyReposit
         _dbSet = context.Set<TEntity>();
     }
 
-    public async Task Add(TEntity entity) =>
+    public async Task AddAsync(TEntity entity) =>
        await _dbSet.AddAsync(entity);
 
     public void Update(TEntity entity) =>

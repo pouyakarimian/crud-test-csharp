@@ -16,7 +16,7 @@ public interface IWriteOnlyRepository<TEntity, in TKey> : IDisposable
     /// Adds a new entity to the repository.
     /// </summary>
     /// <param name="entity">The entity to add.</param>
-    Task Add(TEntity entity);
+    Task AddAsync(TEntity entity);
 
     /// <summary>
     /// Updates an existing entity in the repository.

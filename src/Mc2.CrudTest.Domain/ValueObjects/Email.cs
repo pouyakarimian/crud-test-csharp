@@ -23,14 +23,15 @@ public sealed record Email
     /// Creates a new <see cref="Email"/> instance.
     /// </summary>
     /// <param name="emailAddress">The email address to create.</param>
-    public static bool Create(string emailAddress)
+    public static Email Create(string emailAddress)
     {
         if (string.IsNullOrWhiteSpace(emailAddress))
             throw new Exception("The e-mail address must be provided.");
 
-        return !RegexPatterns.EmailIsValid.IsMatch(emailAddress)
-            ? false
-            : true;
+        if (!RegexPatterns.EmailIsValid.IsMatch(emailAddress))
+            throw new Exception("Email is not valid");
+
+        return new Email(emailAddress);
     }
 
     /// <summary>

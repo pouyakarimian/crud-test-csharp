@@ -1,4 +1,6 @@
-﻿namespace Mc2.CrudTest.Domain.ValueObjects
+﻿using System.Net.Mail;
+
+namespace Mc2.CrudTest.Domain.ValueObjects
 {
     public class BankAccountNumber
     {
@@ -13,14 +15,15 @@
 
         public string Number { get; }
 
-        public static bool Create(string number)
+        public static BankAccountNumber Create(string number)
         {
             if (string.IsNullOrWhiteSpace(number))
                 throw new Exception("The bank account number must be provided.");
 
-            return !RegexPatterns.BankAccountNumberIsValid.IsMatch(number)
-                ? false
-                : true;
+            if (!RegexPatterns.BankAccountNumberIsValid.IsMatch(number))
+                throw new Exception("The bank account number is not valid");
+
+            return new BankAccountNumber(number);
         }
 
         public override string ToString() => Number;

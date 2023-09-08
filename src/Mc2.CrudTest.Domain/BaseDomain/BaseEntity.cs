@@ -30,6 +30,7 @@ public abstract class BaseEntity : IEntity<Guid>
     /// Gets the unique identifier of this entity.
     /// </summary>
     public Guid Id { get; private init; }
+    public bool IsDeleted { get; protected set; }
 
     /// <summary>
     /// Adds a domain event to the entity.
