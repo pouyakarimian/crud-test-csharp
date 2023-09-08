@@ -9,7 +9,7 @@ namespace Mc2.CrudTest.Infrastructure.Data.Context
     {
         private const string Collation = "Latin1_General_CI_AI";
 
-        protected CrudTestDbContext(DbContextOptions<CrudTestDbContext> dbOptions) : base(dbOptions)
+        public CrudTestDbContext(DbContextOptions<CrudTestDbContext> dbOptions) : base(dbOptions)
         {
         }
         public DbSet<Customer> Customers => Set<Customer>();

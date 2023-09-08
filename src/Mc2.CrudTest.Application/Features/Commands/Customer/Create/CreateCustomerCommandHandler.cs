@@ -12,7 +12,10 @@ namespace Mc2.CrudTest.Application.Features.Commands.Customer.Create
         private readonly ICustomerWriteRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mapper _mapper;
-
+        public CreateCustomerCommandHandler()
+        {
+            
+        }
         public CreateCustomerCommandHandler(ICustomerWriteRepository repository,
             IUnitOfWork unitOfWork,
             Mapper mapper)

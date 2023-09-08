@@ -20,6 +20,8 @@ public class CustomerController : ControllerBase
         _logger = logger;
         _mediator = mediator;
     }
+
+    [HttpPost]
     public async Task<ActionResult<CustomerDto>> Create([FromBody][Required] CreateCustomerCommand command)
     => Ok(await _mediator.Send(command));
 

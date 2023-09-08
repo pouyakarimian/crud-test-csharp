@@ -1,5 +1,6 @@
 ﻿using Mc2.CrudTest.Application.Dtos.Customer;
 using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mc2.CrudTest.Application.Features.Commands.Customer.Create
 {
@@ -8,6 +9,8 @@ namespace Mc2.CrudTest.Application.Features.Commands.Customer.Create
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
 
         public string PhoneNumber { get; set; }
 
