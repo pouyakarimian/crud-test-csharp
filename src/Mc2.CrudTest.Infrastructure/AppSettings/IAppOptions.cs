@@ -1,4 +1,4 @@
-namespace Mc2.CrudTest.Web.Host.AppSettings;
+namespace Mc2.CrudTest.Infrastructure.AppSettings;
 
 /// <summary>
 /// Represents the interface for application options.

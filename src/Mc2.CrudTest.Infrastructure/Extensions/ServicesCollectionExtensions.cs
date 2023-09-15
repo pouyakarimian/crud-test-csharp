@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Mc2.CrudTest.Domain.Aggregates.Customer;
 using Mc2.CrudTest.Domain.BaseDomain;
 using Mc2.CrudTest.Infrastructure.Data.Context;
@@ -17,7 +16,7 @@ public static class ServicesCollectionExtensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services) =>
         services
             .AddScoped<CrudTestDbContext>()
-            //.AddScoped<EventStoreDbContext>()
+            .AddSingleton<ReadDbContext>()
             .AddScoped<IUnitOfWork, UnitOfWork>();
 
     /// <summary>
@@ -26,6 +25,6 @@ public static class ServicesCollectionExtensions
     /// <param name="services">The service collection.</param>
     public static IServiceCollection AddWriteOnlyRepositories(this IServiceCollection services) =>
      services
-        //.AddScoped<IEventStoreRepository, EventStoreRepository>()
+        .AddScoped<IEventStoreRepository, EventStoreRepository>()
         .AddScoped<ICustomerWriteRepository, CustomerWriteOnlyRepository>();
 }

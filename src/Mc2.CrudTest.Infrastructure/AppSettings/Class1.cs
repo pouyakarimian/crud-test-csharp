@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mc2.CrudTest.Infrastructure.Extensions
+namespace Mc2.CrudTest.Infrastructure.AppSettings
 {
     internal class Class1
     {

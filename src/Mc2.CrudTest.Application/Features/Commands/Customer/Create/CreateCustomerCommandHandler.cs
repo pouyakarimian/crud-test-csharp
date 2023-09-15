@@ -26,7 +26,8 @@ namespace Mc2.CrudTest.Application.Features.Commands.Customer.Create
         {
             var email = Email.Create(request.Email);
 
-            var bankAccountNumber = BankAccountNumber.Create(request.BankAccountNumber);
+            var bankAccountNumber = BankAccountNumber
+                .Create(request.BankAccountNumber);
 
             // Checking if a customer with the email address already exists.
             if (await _repository.ExistsByEmailAsync(email))

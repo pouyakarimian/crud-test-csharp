@@ -13,20 +13,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssemblies(typeof(CreateCustomerCommand).GetTypeInfo().Assembly);
-});
 
 builder.Services
     .ConfigureAppSettings()
+    .AddMediatR()
+    .AddAutoMapper()
+    .AddFluentValidation()
     .AddInfrastructure()
     .AddWriteDbContext()
+    .AddReadDbContext()
     .AddWriteOnlyRepositories();
-
-builder.Services.AddAutoMapper(typeof(CustomerMapping).Assembly, typeof(Program).Assembly);
-
-builder.Services.AddValidatorsFromAssemblyContaining(typeof(CreateCustomerCommandValidator));
 
 var app = builder.Build();
 

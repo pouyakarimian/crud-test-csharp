@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace Mc2.CrudTest.Domain.BaseDomain;
 
 /// <summary>
 /// Represents a repository for storing events in an event store.
 /// </summary>
-public interface IEventStoreRepository : IDisposable
+public interface IEventStoreRepository
 {
     /// <summary>
     /// Stores a collection of event stores asynchronously.

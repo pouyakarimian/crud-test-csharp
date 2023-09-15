@@ -10,19 +10,19 @@ namespace Shop.Infrastructure.Data;
 
 public sealed class UnitOfWork : IUnitOfWork
 {
-    //private readonly IEventStoreRepository _eventStoreRepository;
+    private readonly IEventStoreRepository _eventStoreRepository;
     private readonly ILogger<UnitOfWork> _logger;
     private readonly IMediator _mediator;
     private readonly CrudTestDbContext _writeDbContext;
 
     public UnitOfWork(
         CrudTestDbContext writeDbContext,
-        //IEventStoreRepository eventStoreRepository,
+        IEventStoreRepository eventStoreRepository,
         IMediator mediator,
         ILogger<UnitOfWork> logger)
     {
         _writeDbContext = writeDbContext;
-        //_eventStoreRepository = eventStoreRepository;
+        _eventStoreRepository = eventStoreRepository;
         _mediator = mediator;
         _logger = logger;
     }
@@ -128,7 +128,7 @@ public sealed class UnitOfWork : IUnitOfWork
         await Task.WhenAll(tasks);
 
         // Store the event stores using _eventStoreRepository.
-        //await _eventStoreRepository.StoreAsync(eventStores);
+        await _eventStoreRepository.StoreAsync(eventStores);
     }
 
     #region IDisposable
@@ -156,7 +156,6 @@ public sealed class UnitOfWork : IUnitOfWork
         if (disposing)
         {
             _writeDbContext.Dispose();
-            //_eventStoreRepository.Dispose();
         }
 
         _disposed = true;

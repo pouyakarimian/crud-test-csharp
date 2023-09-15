@@ -1,7 +1,10 @@
 using System.Reflection;
+using FluentValidation;
+using Mc2.CrudTest.Application.Features.Commands.Customer;
+using Mc2.CrudTest.Application.Features.Commands.Customer.Create;
 using Mc2.CrudTest.Domain.Extensions;
+using Mc2.CrudTest.Infrastructure.AppSettings;
 using Mc2.CrudTest.Infrastructure.Data.Context;
-using Mc2.CrudTest.Web.Host.AppSettings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -36,8 +39,36 @@ internal static class ServicesCollectionExtensions
         services.AddDbContext<CrudTestDbContext>((serviceProvider, optionsBuilder) =>
             ConfigureDbContext(serviceProvider, optionsBuilder, QueryTrackingBehavior.TrackAll));
 
-        //services.AddDbContext<EventStoreDbContext>((serviceProvider, optionsBuilder) =>
-            //ConfigureDbContext<EventStoreDbContext>(serviceProvider, optionsBuilder, QueryTrackingBehavior.NoTrackingWithIdentityResolution));
+        return services;
+    }
+
+    public static IServiceCollection AddReadDbContext(this IServiceCollection services)
+    {
+        services.AddSingleton<IReadDbContext, ReadDbContext>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddMediatR(this IServiceCollection services)
+    {
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblies(typeof(CreateCustomerCommand).GetTypeInfo().Assembly);
+        });
+
+        return services;
+    }
+
+    public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(CustomerMapping).Assembly, typeof(Program).Assembly);
+
+        return services;
+    }
+
+    public static IServiceCollection AddFluentValidation(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssemblyContaining(typeof(CreateCustomerCommandValidator));
 
         return services;
     }

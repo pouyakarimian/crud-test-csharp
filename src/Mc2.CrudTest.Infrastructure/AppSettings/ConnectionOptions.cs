@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Mc2.CrudTest.Web.Host.AppSettings;
+namespace Mc2.CrudTest.Infrastructure.AppSettings;
 
 public sealed class ConnectionOptions : IAppOptions
 {
@@ -12,6 +12,9 @@ public sealed class ConnectionOptions : IAppOptions
 
     [Required]
     public string NoSqlConnection { get; private init; }
+    
+    [Required]
+    public string DatabaseName { get; private init; }
 
     static string IAppOptions.ConfigSectionPath => "ConnectionStrings";
 }

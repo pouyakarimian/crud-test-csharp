@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Mc2.CrudTest.Domain.BaseDomain;
 
 /// <summary>

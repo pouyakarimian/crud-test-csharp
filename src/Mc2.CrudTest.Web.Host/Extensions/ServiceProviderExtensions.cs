@@ -1,6 +1,4 @@
-using System;
-using Mc2.CrudTest.Web.Host.AppSettings;
-using Microsoft.Extensions.DependencyInjection;
+using Mc2.CrudTest.Infrastructure.AppSettings;
 using Microsoft.Extensions.Options;
 
 namespace Mc2.CrudTest.Domain.Extensions;

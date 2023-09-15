@@ -25,6 +25,7 @@ namespace Mc2.CrudTest.Domain.Aggregates.Customer
             DateOfBirth = dateOfBirth;
         }
 
+    
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
